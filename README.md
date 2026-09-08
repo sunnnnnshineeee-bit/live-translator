@@ -19,10 +19,9 @@ Microphone → **Whisper.cpp** speech recognition → **Qwen3** local translatio
 
 > ### A Note for My Friend
 >
-> Hey friend! I built this little thing over quite a few late nights — every feature was hard-won, from chasing audio hallucinations to taming translation loops.
-> If you get stuck on any step, don't panic — just come find me. Good luck with your streams!
+> I originally thought I could finish this in a week! It ended up taking a whole month of on-and-off tinkering. I hope this little translator proves helpful to the Star (o^^o)
 >
-> —— sunnnnnshineeee
+> —— 烧鸭
 
 <div align="center">
 <img src="docs/divider.png" alt="✦" width="60%"/>
