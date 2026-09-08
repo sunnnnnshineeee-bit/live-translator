@@ -114,16 +114,24 @@ Model files are not stored in git — download them with the scripts (hf-mirror.
 | Platform | Command | Size | Translation model |
 |:---:|---|:---:|:---:|
 | macOS / Linux | `bash scripts/download-models.sh` | ~3.4 GB | Qwen3-4B |
-| Windows | `powershell -ExecutionPolicy Bypass -File scripts\download-models.ps1` | ~1.6 GB | Qwen3-1.7B |
+| Windows | `powershell -ExecutionPolicy Bypass -File scripts\download-models.ps1` | ~1.1 GB | Qwen3-1.7B |
 
 After downloading you will have these files:
 
 | File | Purpose | Size |
 |---|---|:---:|
-| `whisper.cpp/models/ggml-large-v3-turbo-q5_0.bin` | Speech recognition | 574 MB |
+| `whisper.cpp/models/ggml-large-v3-turbo-q5_0.bin` | Speech recognition (macOS) | 574 MB |
+| `whisper.cpp/models/ggml-base-q5_1.bin` | Speech recognition (Windows) | 57 MB |
 | `whisper.cpp/models/ggml-silero-v6.2.0.bin` | VAD silence detection | 864 KB |
 | `models/Qwen3-4B-Q4_K_M.gguf` | Translation (macOS) | 2.3 GB |
 | `models/Qwen3-1.7B-Q4_K_M.gguf` | Translation (Windows) | 1.0 GB |
+
+> [!NOTE]
+> Windows uses the much smaller base Whisper model by default — the large one cannot run in real time on a pure-CPU PC. To upgrade accuracy on a strong machine, download `ggml-large-v3-turbo-q5_0.bin` into `whisper.cpp/models/` and start the backend with:
+> ```powershell
+> $env:WHISPER_MODEL="whisper.cpp/models/ggml-large-v3-turbo-q5_0.bin"
+> npx tsx server.ts
+> ```
 
 ### 3. Build whisper.cpp
 
@@ -261,7 +269,8 @@ Open <http://localhost:5173>:
 | Overlay is completely blank | Make sure all three terminals are running; check the browser console (F12) for errors |
 | Translation never arrives | llama-server isn't running, or port 8080 is occupied: `curl http://127.0.0.1:8080/health` |
 | Ghost subtitles during silence | Check that `whisper.cpp/models/ggml-silero-v6.2.0.bin` downloaded successfully |
-| Gets laggier the longer I talk | CPU can't keep up with the 3 s window: watch `Processing audio queue: N remaining` in the terminal — if N keeps climbing, change `-np 2` to `-np 1` in start-llama, or switch to a smaller model |
+| Recognition is completely wrong / outputs phrases like “他开始说话了” or “Now I'm going to start writing” that were never said | Your voice is not reaching the app — the wrong microphone is being captured. Pick the correct mic in the app's device dropdown, and check the camera/mic icon in the Chrome/Edge address bar. Speak and watch the volume bar in the app: if it barely moves, Windows is listening to the wrong device (also check Windows Settings → Privacy → Microphone) |
+| Gets laggier the longer I talk | Stale audio chunks are now dropped automatically (watch for “Dropped N stale audio chunks” in the terminal), so latency stays bounded even on slow CPUs. If it is still slow, close CPU-heavy apps, or change `-np 2` to `-np 1` in start-llama |
 | Port conflicts | 3001 (backend) / 8080 (llama) / 5173 (frontend) — adjust the corresponding config when occupied |
 
 <div align="center">
@@ -271,6 +280,7 @@ Open <http://localhost:5173>:
 <h2 align="center">✦ Known Limitations ✦</h2>
 
 - Recognition supports **Chinese and English only** (other languages are filtered out as hallucinations)
+- Windows uses the smaller `base-q5_1` recognition model by default so it runs in real time on CPU; its accuracy is somewhat below the macOS `large-v3-turbo` (see the note in Step 2 to upgrade)
 - On pure-CPU Windows with the 1.7B model, total subtitle latency is about **3–5 s** (the original text appears first via progressive display in ~2 s); an NVIDIA GPU with the CUDA build of llama.cpp brings it down to ~2 s
 - The 1.7B model's translation quality is slightly below the 4B's: short sentences are essentially identical, but long, difficult sentences occasionally come out awkwardly or in Traditional Chinese (the direction guard retries as a fallback). For best quality, switch to the 4B model on Windows too (one line in the download script; needs 16 GB RAM)
 - Requires a desktop **Chrome / Edge** browser (ScriptProcessorNode + WebSocket)
