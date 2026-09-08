@@ -147,6 +147,15 @@ cmake --build build --config Release
 cd ..
 ```
 
+> [!TIP]
+> **Windows: you can skip this step entirely.** No need for Visual Studio or CMake — download the prebuilt `whisper-bin-x64.zip` (only ~8 MB) from the [whisper.cpp releases page](https://github.com/ggml-org/whisper.cpp/releases), put the zip in the project root, and run:
+>
+> ```powershell
+> Expand-Archive .\whisper-bin-x64.zip -DestinationPath whisper.cpp\build\bin
+> ```
+>
+> That places `whisper-cli.exe` (with all its DLLs) exactly where the server looks for it. The `git clone whisper.cpp` step above can be skipped too — the model download script creates the folders it needs.
+
 > [!NOTE]
 > Build output locations: macOS — `whisper.cpp/build/bin/whisper-cli`; Windows — `whisper.cpp/build/bin/Release/whisper-cli.exe`
 
