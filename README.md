@@ -15,7 +15,9 @@
 
 </div>
 
----
+<div align="center">
+<img src="docs/divider.jpg" alt="✦" width="80%"/>
+</div>
 
 > ### 🎭 写给朋友的话
 >
@@ -24,9 +26,11 @@
 >
 > —— sunnnnnshineeee
 
----
+<div align="center">
+<img src="docs/divider.jpg" alt="✦" width="80%"/>
+</div>
 
-## ✦ ⚡ 特性亮点
+<h2 align="center">✦ ⚡ 特性亮点 ✦</h2>
 
 | | 特性 | 说明 |
 |:---:|---|---|
@@ -36,9 +40,11 @@
 | ✂️ | **智能断句** | 标点优先，停顿 1.2 秒自动提交 |
 | 🚫 | **复读克星** | 方向守卫检测到"原样复读"自动强制重译 |
 
----
+<div align="center">
+<img src="docs/divider.jpg" alt="✦" width="80%"/>
+</div>
 
-## ✦ 🧠 工作原理
+<h2 align="center">✦ 🧠 工作原理 ✦</h2>
 
 ```mermaid
 flowchart LR
@@ -47,11 +53,23 @@ flowchart LR
     B -- "JSON / HTTP" --> D["🧠 llama-server<br/>Qwen3 · 端口 8080"]
     D -- "译文" --> B
     B -- "广播字幕<br/>（渐进入幕）" --> E["🎬 /overlay 字幕层<br/>OBS 浏览器源"]
+    classDef mic fill:#FBF3E2,stroke:#9E1C1C,color:#7E1A1A,stroke-width:2px
+    classDef srv fill:#FBF3E2,stroke:#1F3A5F,color:#16304F,stroke-width:2px
+    classDef txt fill:#FBF3E2,stroke:#C9A227,color:#7A5A12,stroke-width:2px
+    classDef qw fill:#FBF3E2,stroke:#B5651D,color:#8A4A12,stroke-width:2px
+    classDef ov fill:#FBF3E2,stroke:#9E1C1C,color:#7E1A1A,stroke-width:2px
+    class A mic
+    class B srv
+    class C txt
+    class D qw
+    class E ov
 ```
 
----
+<div align="center">
+<img src="docs/divider.jpg" alt="✦" width="80%"/>
+</div>
 
-## ✦ 📋 环境要求
+<h2 align="center">✦ 📋 环境要求 ✦</h2>
 
 ### 🖥️ 硬件
 
@@ -80,9 +98,11 @@ flowchart LR
 
 </details>
 
----
+<div align="center">
+<img src="docs/divider.jpg" alt="✦" width="80%"/>
+</div>
 
-## ✦ 🚀 快速开始
+<h2 align="center">✦ 🚀 快速开始 ✦</h2>
 
 以下命令均在项目根目录执行。
 
@@ -141,9 +161,11 @@ cd ..
 
 </details>
 
----
+<div align="center">
+<img src="docs/divider.jpg" alt="✦" width="80%"/>
+</div>
 
-## ✦ ▶️ 运行（需要开 3 个终端）
+<h2 align="center">✦ ▶️ 运行（需要开 3 个终端） ✦</h2>
 
 ```bash
 # 终端 1️⃣  翻译模型服务（端口 8080）
@@ -164,9 +186,11 @@ npm run dev
 2. 🌐 语言选 **「自动（英↔中 双向）」**
 3. ▶️ 点 **Start Translation**，开始说话！
 
----
+<div align="center">
+<img src="docs/divider.jpg" alt="✦" width="80%"/>
+</div>
 
-## ✦ 🎬 接入 OBS
+<h2 align="center">✦ 🎬 接入 OBS ✦</h2>
 
 1. OBS → 添加 **浏览器源**
 2. URL 填 `http://localhost:5173/overlay`，宽 **1200** 高 **300**
@@ -174,9 +198,11 @@ npm run dev
 
 > ⚠️ 直播结束记得点 **Stop Translation**——会触发 flush，把最后半句提交翻译完再退出。
 
----
+<div align="center">
+<img src="docs/divider.jpg" alt="✦" width="80%"/>
+</div>
 
-## ✦ 📁 项目结构
+<h2 align="center">✦ 📁 项目结构 ✦</h2>
 
 <details>
 <summary>点击展开</summary>
@@ -199,9 +225,11 @@ npm run dev
 
 </details>
 
----
+<div align="center">
+<img src="docs/divider.jpg" alt="✦" width="80%"/>
+</div>
 
-## ✦ 🔧 故障排查
+<h2 align="center">✦ 🔧 故障排查 ✦</h2>
 
 | 症状 | 原因 / 解决 |
 |---|---|
@@ -212,20 +240,24 @@ npm run dev
 | 🐌 连续说话越来越卡 | CPU 扛不住 3s 窗口：看终端 `Processing audio queue: N remaining`，N 持续上涨就把 start-llama 里 `-np 2` 改成 `-np 1`，或换小模型 |
 | 🔌 端口冲突 | 3001（后端）/ 8080（llama）/ 5173（前端）被占用时改对应配置 |
 
----
+<div align="center">
+<img src="docs/divider.jpg" alt="✦" width="80%"/>
+</div>
 
-## ✦ ⚠️ 已知限制
+<h2 align="center">✦ ⚠️ 已知限制 ✦</h2>
 
 - 识别语言仅支持**中文、英文**（其他语言按幻觉过滤丢弃）
 - Windows 纯 CPU + 1.7B 模型下，译文总延迟约 **3–5 秒**（原文渐进入幕 ~2 秒先出）；有 N 卡装 CUDA 版 llama.cpp 可降到 ~2 秒
 - 1.7B 翻译质量略低于 4B：短句基本无差别，长难句偶有不顺、偶发繁体中文（方向守卫会兜底重试）。追求质量可在 Windows 上也改用 4B（换下载脚本里一行模型名，内存需 16 GB）
 - 浏览器要求桌面版 **Chrome / Edge**（ScriptProcessorNode + WebSocket）
 
----
+<div align="center">
+<img src="docs/divider.jpg" alt="✦" width="80%"/>
+</div>
 
 <div align="center">
 
-**✦ 用 ❤️ 与踩不完的坑，为你而做 ✦**
+### ✦ 用 ❤️ 与踩不完的坑，为你而做 ✦
 
 `© sunnnnnshineeee · Live Translator`
 
