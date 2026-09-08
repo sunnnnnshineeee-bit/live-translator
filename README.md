@@ -16,10 +16,10 @@
 </div>
 
 <div align="center">
-<img src="docs/divider.png" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-> ### 🎭 写给朋友的话
+> ### 写给朋友的话
 >
 > 朋友你好呀！这个小东西是我连着好几个晚上一点点抠出来的——从语音幻听到翻译复读，每个功能都是踩坑踩出来的。
 > 安装哪一步卡住了别慌，随时来找我。祝你直播顺利！🎉
@@ -27,10 +27,10 @@
 > —— sunnnnnshineeee
 
 <div align="center">
-<img src="docs/divider.png" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ ⚡ 特性亮点 ✦</h2>
+<h2 align="center">✦ 特性亮点 ✦</h2>
 
 | | 特性 | 说明 |
 |:---:|---|---|
@@ -41,10 +41,10 @@
 | 🚫 | **复读克星** | 方向守卫检测到"原样复读"自动强制重译 |
 
 <div align="center">
-<img src="docs/divider.png" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 🧠 工作原理 ✦</h2>
+<h2 align="center">✦ 工作原理 ✦</h2>
 
 ```mermaid
 flowchart LR
@@ -53,25 +53,18 @@ flowchart LR
     B -- "JSON / HTTP" --> D["🧠 llama-server<br/>Qwen3 · 端口 8080"]
     D -- "译文" --> B
     B -- "广播字幕<br/>（渐进入幕）" --> E["🎬 /overlay 字幕层<br/>OBS 浏览器源"]
-    classDef mic fill:#FBF3E2,stroke:#9E1C1C,color:#7E1A1A,stroke-width:2px
-    classDef srv fill:#FBF3E2,stroke:#1F3A5F,color:#16304F,stroke-width:2px
-    classDef txt fill:#FBF3E2,stroke:#C9A227,color:#7A5A12,stroke-width:2px
-    classDef qw fill:#FBF3E2,stroke:#B5651D,color:#8A4A12,stroke-width:2px
-    classDef ov fill:#FBF3E2,stroke:#9E1C1C,color:#7E1A1A,stroke-width:2px
-    class A mic
-    class B srv
-    class C txt
-    class D qw
-    class E ov
+    classDef cls fill:#FBF3E2,stroke:#C9A227,color:#7E5A14,stroke-width:2px
+    class A,B,C,D,E cls
+    linkStyle default stroke:#C9A227,stroke-width:1.5px
 ```
 
 <div align="center">
-<img src="docs/divider.png" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 📋 环境要求 ✦</h2>
+<h2 align="center">✦ 环境要求 ✦</h2>
 
-### 🖥️ 硬件
+### 硬件
 
 | 项目 | 最低要求 |
 |:---:|---|
@@ -82,7 +75,7 @@ flowchart LR
 
 > 💡 **翻译模型分两档**：Windows 脚本默认 **Qwen3-1.7B**（CPU 快），macOS 脚本默认 **Qwen3-4B**（走 Metal GPU，质量更好）。想互换只改脚本里一行模型名。**有 N 卡强烈建议**下载 llama.cpp 的 `-cuda` 版本，比 CPU 快一个量级。
 
-### 📦 软件
+### 软件
 
 | 软件 | 说明 | 下载 |
 |---|---|---|
@@ -91,7 +84,7 @@ flowchart LR
 | **CMake** + C++ 编译器 | 编译 whisper.cpp | 见下方 |
 
 <details>
-<summary>🔧 CMake / 编译器安装说明（点击展开）</summary>
+<summary>CMake / 编译器安装说明（点击展开）</summary>
 
 - **macOS**：终端执行 `xcode-select --install`，然后 `brew install cmake`
 - **Windows**：安装 [Visual Studio 2022 Community](https://visualstudio.microsoft.com/)（免费），安装时勾选 **「使用 C++ 的桌面开发」** 工作负载，自带 CMake
@@ -99,10 +92,10 @@ flowchart LR
 </details>
 
 <div align="center">
-<img src="docs/divider.png" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 🚀 快速开始 ✦</h2>
+<h2 align="center">✦ 快速开始 ✦</h2>
 
 以下命令均在项目根目录执行。
 
@@ -148,24 +141,24 @@ cd ..
 ### ④ 准备 llama.cpp（跑翻译模型）
 
 <details>
-<summary>🪟 Windows（点击展开）</summary>
+<summary>Windows（点击展开）</summary>
 
 到 <https://github.com/ggml-org/llama.cpp/releases> 下载最新的 `llama-bXXXX-bin-win-cpu-x64.zip`（有 N 卡就下 `win-cuda` 版本），把压缩包里**全部文件**解压到项目的 `llama\` 文件夹（没有就新建）。
 
 </details>
 
 <details>
-<summary>🍎 macOS（点击展开）</summary>
+<summary>macOS（点击展开）</summary>
 
 `brew install llama.cpp`，或自行编译，确保 `llama/llama-server` 存在（本仓库的启动脚本按此路径找）。
 
 </details>
 
 <div align="center">
-<img src="docs/divider.png" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ ▶️ 运行（需要开 3 个终端） ✦</h2>
+<h2 align="center">✦ 运行（需要开 3 个终端） ✦</h2>
 
 ```bash
 # 终端 1️⃣  翻译模型服务（端口 8080）
@@ -187,10 +180,10 @@ npm run dev
 3. ▶️ 点 **Start Translation**，开始说话！
 
 <div align="center">
-<img src="docs/divider.png" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 🎬 接入 OBS ✦</h2>
+<h2 align="center">✦ 接入 OBS ✦</h2>
 
 1. OBS → 添加 **浏览器源**
 2. URL 填 `http://localhost:5173/overlay`，宽 **1200** 高 **300**
@@ -199,10 +192,10 @@ npm run dev
 > ⚠️ 直播结束记得点 **Stop Translation**——会触发 flush，把最后半句提交翻译完再退出。
 
 <div align="center">
-<img src="docs/divider.png" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 📁 项目结构 ✦</h2>
+<h2 align="center">✦ 项目结构 ✦</h2>
 
 <details>
 <summary>点击展开</summary>
@@ -226,10 +219,10 @@ npm run dev
 </details>
 
 <div align="center">
-<img src="docs/divider.png" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 🔧 故障排查 ✦</h2>
+<h2 align="center">✦ 故障排查 ✦</h2>
 
 | 症状 | 原因 / 解决 |
 |---|---|
@@ -241,10 +234,10 @@ npm run dev
 | 🔌 端口冲突 | 3001（后端）/ 8080（llama）/ 5173（前端）被占用时改对应配置 |
 
 <div align="center">
-<img src="docs/divider.png" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ ⚠️ 已知限制 ✦</h2>
+<h2 align="center">✦ 已知限制 ✦</h2>
 
 - 识别语言仅支持**中文、英文**（其他语言按幻觉过滤丢弃）
 - Windows 纯 CPU + 1.7B 模型下，译文总延迟约 **3–5 秒**（原文渐进入幕 ~2 秒先出）；有 N 卡装 CUDA 版 llama.cpp 可降到 ~2 秒
@@ -252,12 +245,12 @@ npm run dev
 - 浏览器要求桌面版 **Chrome / Edge**（ScriptProcessorNode + WebSocket）
 
 <div align="center">
-<img src="docs/divider.png" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
 <div align="center">
 
-### ✦ 用 ❤️ 与踩不完的坑，为你而做 ✦
+### ✦ 用爱，为你而做 ✦
 
 `© sunnnnnshineeee · Live Translator`
 
