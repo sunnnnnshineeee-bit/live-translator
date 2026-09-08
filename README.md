@@ -21,7 +21,7 @@ Microphone → **Whisper.cpp** speech recognition → **Qwen3** local translatio
 >
 > 本来想着一周就能做完的！最后没想到断断续续搓了一个月，希望这个小翻译器能对星星有所帮助(o^^o)
 >
-> —— 烧鸭
+> <div align="right">—— 烧鸭</div>
 
 <div align="center">
 <img src="docs/divider.png" alt="✦" width="60%"/>
