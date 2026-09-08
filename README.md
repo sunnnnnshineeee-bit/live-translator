@@ -2,16 +2,16 @@
 
 <img src="docs/banner.jpg" alt="Live Translator" width="100%"/>
 
-### ✦ 实时双语直播字幕 · 全程本地运行 ✦
+### ✦ Live Translator for the Star ✦
 
-麦克风 → **Whisper.cpp** 语音识别 → **Qwen3** 本地翻译 → 浏览器字幕层（可直接作为 OBS 浏览器源）
+Microphone → **Whisper.cpp** speech recognition → **Qwen3** local translation → browser subtitle overlay (works directly as an OBS browser source)
 
-**不依赖任何云服务 · 不需要 API Key · 数据不出本机**
+**No cloud services · No API keys · Your data never leaves your machine**
 
-![Platform](https://img.shields.io/badge/平台-macOS%20%7C%20Windows-9E1C1C)
+![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows-9E1C1C)
 ![Node](https://img.shields.io/badge/Node.js-%3E%3D%2020-C9A227)
-![Local](https://img.shields.io/badge/100%25-本地运行-1F3A5F)
-![Cloud](https://img.shields.io/badge/无-云服务%20%2F%20API%20Key-B5651D)
+![Local](https://img.shields.io/badge/100%25-local-1F3A5F)
+![Cloud](https://img.shields.io/badge/zero-cloud%20%2F%20API%20key-B5651D)
 
 </div>
 
@@ -19,10 +19,10 @@
 <img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-> ### 写给朋友的话
+> ### A Note for My Friend
 >
-> 朋友你好呀！这个小东西是我连着好几个晚上一点点抠出来的——从语音幻听到翻译复读，每个功能都是踩坑踩出来的。
-> 安装哪一步卡住了别慌，随时来找我。祝你直播顺利！🎉
+> Hey friend! I built this little thing over quite a few late nights — every feature was hard-won, from chasing audio hallucinations to taming translation loops.
+> If you get stuck on any step, don't panic — just come find me. Good luck with your streams!
 >
 > —— sunnnnnshineeee
 
@@ -30,29 +30,29 @@
 <img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 特性亮点 ✦</h2>
+<h2 align="center">✦ Highlights ✦</h2>
 
-| | 特性 | 说明 |
-|:---:|---|---|
-| ⚡ | **渐进入幕** | 原文 ~1.8 秒先上屏，译文完成后自动替换为双语 |
-| 🛡️ | **反幻听三件套** | VAD + RMS 静音门限 + 第三语言过滤，无声时不再"凭空说话" |
-| 🔁 | **自动双向** | 中文 ⇄ 英文自动检测方向，也可手动锁定 |
-| ✂️ | **智能断句** | 标点优先，停顿 1.2 秒自动提交 |
-| 🚫 | **复读克星** | 方向守卫检测到"原样复读"自动强制重译 |
+| Feature | Description |
+|---|---|
+| **Progressive display** | Original text on screen in ~1.8 s, automatically replaced by bilingual subtitles once the translation finishes |
+| **Anti-hallucination trio** | VAD + RMS silence gate + third-language filtering — no more "ghost subtitles" during silence |
+| **Auto bidirectional** | Chinese ⇄ English direction detected automatically, or locked manually |
+| **Smart segmentation** | Punctuation first; a 1.2 s pause auto-submits the sentence |
+| **Repetition killer** | A direction guard detects "same-language echo" output and forces a re-translation |
 
 <div align="center">
 <img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 工作原理 ✦</h2>
+<h2 align="center">✦ How It Works ✦</h2>
 
 ```mermaid
 flowchart LR
-    A["🎤 浏览器麦克风<br/>App.tsx"] -- "16kHz WAV<br/>1.5s 滑动窗口" --> B["🖥️ server.ts<br/>端口 3001"]
-    B -- "whisper-cli<br/>3s 窗口 + VAD" --> C["📝 识别文本"]
-    B -- "JSON / HTTP" --> D["🧠 llama-server<br/>Qwen3 · 端口 8080"]
-    D -- "译文" --> B
-    B -- "广播字幕<br/>（渐进入幕）" --> E["🎬 /overlay 字幕层<br/>OBS 浏览器源"]
+    A["Browser microphone<br/>App.tsx"] -- "16 kHz WAV<br/>1.5 s sliding window" --> B["server.ts<br/>port 3001"]
+    B -- "whisper-cli<br/>3 s window + VAD" --> C["Recognized text"]
+    B -- "JSON / HTTP" --> D["llama-server<br/>Qwen3 · port 8080"]
+    D -- "translation" --> B
+    B -- "broadcast subtitles<br/>(progressive display)" --> E["/overlay layer<br/>OBS browser source"]
     classDef cls fill:#FBF3E2,stroke:#C9A227,color:#7E5A14,stroke-width:2px
     class A,B,C,D,E cls
     linkStyle default stroke:#C9A227,stroke-width:1.5px
@@ -62,32 +62,33 @@ flowchart LR
 <img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 环境要求 ✦</h2>
+<h2 align="center">✦ Requirements ✦</h2>
 
-### 硬件
+### Hardware
 
-| 项目 | 最低要求 |
+| Item | Minimum |
 |:---:|---|
-| 💾 内存 | **8 GB**（Windows：Whisper ~1.5 GB + Qwen3-1.7B ~1.5 GB）；macOS 用 4B 时建议 16 GB |
-| 🔧 CPU | 8 线程以上（Apple Silicon M 系列，或近几年的 x86 桌面 CPU） |
-| 💿 磁盘 | ~3.5 GB（Windows）；macOS 用 4B 时 ~5 GB |
-| 🪟 系统 | macOS（Apple Silicon）或 Windows 10/11 64 位 |
+| Memory | **8 GB** (Windows: Whisper ~1.5 GB + Qwen3-1.7B ~1.5 GB); 16 GB recommended on macOS with the 4B model |
+| CPU | 8+ threads (Apple Silicon M series, or a recent x86 desktop CPU) |
+| Disk | ~3.5 GB (Windows); ~5 GB on macOS with the 4B model |
+| OS | macOS (Apple Silicon) or Windows 10/11 64-bit |
 
-> 💡 **翻译模型分两档**：Windows 脚本默认 **Qwen3-1.7B**（CPU 快），macOS 脚本默认 **Qwen3-4B**（走 Metal GPU，质量更好）。想互换只改脚本里一行模型名。**有 N 卡强烈建议**下载 llama.cpp 的 `-cuda` 版本，比 CPU 快一个量级。
+> [!NOTE]
+> **Two translation model tiers**: the Windows scripts default to **Qwen3-1.7B** (fast on CPU), the macOS scripts default to **Qwen3-4B** (Metal GPU, better quality). Swapping them is a one-line change in the script. **If you have an NVIDIA GPU**, strongly consider the `-cuda` build of llama.cpp — an order of magnitude faster than CPU.
 
-### 软件
+### Software
 
-| 软件 | 说明 | 下载 |
+| Software | Purpose | Download |
 |---|---|---|
-| **Node.js ≥ 20** | 前端 + 后端运行时 | <https://nodejs.org> |
-| **Git** | 克隆仓库 | <https://git-scm.com> |
-| **CMake** + C++ 编译器 | 编译 whisper.cpp | 见下方 |
+| **Node.js ≥ 20** | Frontend + backend runtime | <https://nodejs.org> |
+| **Git** | Cloning this repo | <https://git-scm.com> |
+| **CMake** + C++ compiler | Building whisper.cpp | See below |
 
 <details>
-<summary>CMake / 编译器安装说明（点击展开）</summary>
+<summary>CMake / compiler setup (click to expand)</summary>
 
-- **macOS**：终端执行 `xcode-select --install`，然后 `brew install cmake`
-- **Windows**：安装 [Visual Studio 2022 Community](https://visualstudio.microsoft.com/)（免费），安装时勾选 **「使用 C++ 的桌面开发」** 工作负载，自带 CMake
+- **macOS**: run `xcode-select --install`, then `brew install cmake`
+- **Windows**: install [Visual Studio 2022 Community](https://visualstudio.microsoft.com/) (free); when installing, check the **"Desktop development with C++"** workload — CMake is included
 
 </details>
 
@@ -95,11 +96,11 @@ flowchart LR
 <img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 快速开始 ✦</h2>
+<h2 align="center">✦ Quick Start ✦</h2>
 
-以下命令均在项目根目录执行。
+All commands below run in the project root.
 
-### ① 克隆仓库并安装依赖
+### 1. Clone the repo and install dependencies
 
 ```bash
 git clone https://github.com/sunnnnnshineeee-bit/live-translator.git
@@ -107,50 +108,51 @@ cd live-translator
 npm install
 ```
 
-### ② 下载模型（一次性）
+### 2. Download the models (one-time)
 
-模型文件不进 git，用脚本下载（国内走 hf-mirror.com，海外自动回退 HuggingFace，支持断点续传）：
+Model files are not stored in git — download them with the scripts (hf-mirror.com first, automatic fallback to HuggingFace, resumable):
 
-| 平台 | 命令 | 体积 | 翻译模型 |
+| Platform | Command | Size | Translation model |
 |:---:|---|:---:|:---:|
-| 🍎 macOS / Linux | `bash scripts/download-models.sh` | ~3.4 GB | Qwen3-4B |
-| 🪟 Windows | `powershell -ExecutionPolicy Bypass -File scripts\download-models.ps1` | ~1.6 GB | Qwen3-1.7B |
+| macOS / Linux | `bash scripts/download-models.sh` | ~3.4 GB | Qwen3-4B |
+| Windows | `powershell -ExecutionPolicy Bypass -File scripts\download-models.ps1` | ~1.6 GB | Qwen3-1.7B |
 
-下载完成后会有这些文件：
+After downloading you will have these files:
 
-| 文件 | 用途 | 体积 |
+| File | Purpose | Size |
 |---|---|:---:|
-| `whisper.cpp/models/ggml-large-v3-turbo-q5_0.bin` | 语音识别 | 574 MB |
-| `whisper.cpp/models/ggml-silero-v6.2.0.bin` | VAD 静音检测 | 864 KB |
-| `models/Qwen3-4B-Q4_K_M.gguf` | 翻译（macOS） | 2.3 GB |
-| `models/Qwen3-1.7B-Q4_K_M.gguf` | 翻译（Windows） | 1.0 GB |
+| `whisper.cpp/models/ggml-large-v3-turbo-q5_0.bin` | Speech recognition | 574 MB |
+| `whisper.cpp/models/ggml-silero-v6.2.0.bin` | VAD silence detection | 864 KB |
+| `models/Qwen3-4B-Q4_K_M.gguf` | Translation (macOS) | 2.3 GB |
+| `models/Qwen3-1.7B-Q4_K_M.gguf` | Translation (Windows) | 1.0 GB |
 
-### ③ 编译 whisper.cpp
+### 3. Build whisper.cpp
 
 ```bash
 git clone https://github.com/ggml-org/whisper.cpp
 cd whisper.cpp
 cmake -B build
-cmake --build build -j              # 🍎 macOS / Linux
-# cmake --build build --config Release   ← 🪟 Windows 用这条
+cmake --build build -j              # macOS / Linux
+# cmake --build build --config Release   <- Windows: use this instead
 cd ..
 ```
 
-> 📌 编译产物位置：macOS 在 `whisper.cpp/build/bin/whisper-cli`，Windows 在 `whisper.cpp/build/bin/Release/whisper-cli.exe`
+> [!NOTE]
+> Build output locations: macOS — `whisper.cpp/build/bin/whisper-cli`; Windows — `whisper.cpp/build/bin/Release/whisper-cli.exe`
 
-### ④ 准备 llama.cpp（跑翻译模型）
+### 4. Set up llama.cpp (runs the translation model)
 
 <details>
-<summary>Windows（点击展开）</summary>
+<summary>Windows (click to expand)</summary>
 
-到 <https://github.com/ggml-org/llama.cpp/releases> 下载最新的 `llama-bXXXX-bin-win-cpu-x64.zip`（有 N 卡就下 `win-cuda` 版本），把压缩包里**全部文件**解压到项目的 `llama\` 文件夹（没有就新建）。
+Download the latest `llama-bXXXX-bin-win-cpu-x64.zip` from <https://github.com/ggml-org/llama.cpp/releases> (pick the `win-cuda` build if you have an NVIDIA GPU) and extract **all files** from the archive into the project's `llama\` folder (create it if it doesn't exist).
 
 </details>
 
 <details>
-<summary>macOS（点击展开）</summary>
+<summary>macOS (click to expand)</summary>
 
-`brew install llama.cpp`，或自行编译，确保 `llama/llama-server` 存在（本仓库的启动脚本按此路径找）。
+Run `brew install llama.cpp`, or build it yourself — just make sure `llama/llama-server` exists (the startup scripts in this repo look for it there).
 
 </details>
 
@@ -158,62 +160,63 @@ cd ..
 <img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 运行（需要开 3 个终端） ✦</h2>
+<h2 align="center">✦ Running (3 terminals) ✦</h2>
 
 ```bash
-# 终端 1️⃣  翻译模型服务（端口 8080）
-bash scripts/start-llama.sh                        # 🍎 macOS / Linux
-# 🪟 Windows:
+# Terminal 1: translation model server (port 8080)
+bash scripts/start-llama.sh                        # macOS / Linux
+# Windows:
 # powershell -ExecutionPolicy Bypass -File scripts\start-llama.ps1
 
-# 终端 2️⃣  字幕后端（端口 3001）
+# Terminal 2: subtitle backend (port 3001)
 npx tsx server.ts
 
-# 终端 3️⃣  前端
+# Terminal 3: frontend
 npm run dev
 ```
 
-打开 <http://localhost:5173>：
+Open <http://localhost:5173>:
 
-1. ✅ 允许麦克风权限，选择麦克风
-2. 🌐 语言选 **「自动（英↔中 双向）」**
-3. ▶️ 点 **Start Translation**，开始说话！
-
-<div align="center">
-<img src="docs/divider.png" alt="✦" width="60%"/>
-</div>
-
-<h2 align="center">✦ 接入 OBS ✦</h2>
-
-1. OBS → 添加 **浏览器源**
-2. URL 填 `http://localhost:5173/overlay`，宽 **1200** 高 **300**
-3. 说话时字幕自动出现，原文 + 译文双语显示
-
-> ⚠️ 直播结束记得点 **Stop Translation**——会触发 flush，把最后半句提交翻译完再退出。
+1. Allow microphone access and pick your microphone
+2. Set the language to **"Auto (English ↔ Chinese, bidirectional)"**
+3. Click **Start Translation** and start talking!
 
 <div align="center">
 <img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 项目结构 ✦</h2>
+<h2 align="center">✦ OBS Integration ✦</h2>
+
+1. In OBS, add a **Browser source**
+2. Set the URL to `http://localhost:5173/overlay`, width **1200**, height **300**
+3. Subtitles appear automatically as you speak — original text plus translation, side by side
+
+> [!WARNING]
+> When your stream ends, click **Stop Translation** — it triggers a flush that submits the last half-sentence for translation before shutting down.
+
+<div align="center">
+<img src="docs/divider.png" alt="✦" width="60%"/>
+</div>
+
+<h2 align="center">✦ Project Structure ✦</h2>
 
 <details>
-<summary>点击展开</summary>
+<summary>Click to expand</summary>
 
 ```
-├── server.ts            # 后端：音频队列、断句、翻译调度、WebSocket 广播
-├── whisperService.ts    # whisper-cli 子进程封装
-├── audioUtils.ts        # 音频工具
+├── server.ts            # Backend: audio queue, segmentation, translation scheduling, WebSocket broadcast
+├── whisperService.ts    # whisper-cli subprocess wrapper
+├── audioUtils.ts        # Audio utilities
 ├── src/
-│   ├── App.tsx          # 控制面板（麦克风、语言、字幕预览）
-│   ├── Overlay.tsx      # OBS 字幕层（/overlay 路由）
-│   └── services/        # AudioRecorder（16kHz 采集 + 滑动窗口切片）
+│   ├── App.tsx          # Control panel (microphone, language, subtitle preview)
+│   ├── Overlay.tsx      # OBS subtitle layer (/overlay route)
+│   └── services/        # AudioRecorder (16 kHz capture + sliding-window slicing)
 ├── scripts/
-│   ├── download-models.sh / .ps1   # 模型下载（hf-mirror 优先）
-│   └── start-llama.sh / .ps1       # llama-server 启动
-├── whisper.cpp/         # （本地克隆+编译，不进 git）
-├── models/              # Qwen 模型（不进 git）
-└── llama/               # llama-server 二进制（不进 git）
+│   ├── download-models.sh / .ps1   # Model download (hf-mirror first)
+│   └── start-llama.sh / .ps1       # llama-server startup
+├── whisper.cpp/         # (cloned + built locally, not in git)
+├── models/              # Qwen models (not in git)
+└── llama/               # llama-server binaries (not in git)
 ```
 
 </details>
@@ -222,27 +225,27 @@ npm run dev
 <img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 故障排查 ✦</h2>
+<h2 align="center">✦ Troubleshooting ✦</h2>
 
-| 症状 | 原因 / 解决 |
+| Symptom | Cause / Fix |
 |---|---|
-| 🔁 改了 server.ts 没生效 | **tsx 不热重载**，Ctrl+C 后重新 `npx tsx server.ts` |
-| ⬜ Overlay 一片空白 | 确认三个终端都开着；浏览器 F12 看 Console 报错 |
-| ⏳ 翻译一直转不出来 | llama-server 没起来或 8080 被占用：`curl http://127.0.0.1:8080/health` |
-| 👻 无声时出幻听字幕 | 检查 `whisper.cpp/models/ggml-silero-v6.2.0.bin` 是否下载成功 |
-| 🐌 连续说话越来越卡 | CPU 扛不住 3s 窗口：看终端 `Processing audio queue: N remaining`，N 持续上涨就把 start-llama 里 `-np 2` 改成 `-np 1`，或换小模型 |
-| 🔌 端口冲突 | 3001（后端）/ 8080（llama）/ 5173（前端）被占用时改对应配置 |
+| Edited server.ts but nothing changed | **tsx has no hot reload** — press Ctrl+C and rerun `npx tsx server.ts` |
+| Overlay is completely blank | Make sure all three terminals are running; check the browser console (F12) for errors |
+| Translation never arrives | llama-server isn't running, or port 8080 is occupied: `curl http://127.0.0.1:8080/health` |
+| Ghost subtitles during silence | Check that `whisper.cpp/models/ggml-silero-v6.2.0.bin` downloaded successfully |
+| Gets laggier the longer I talk | CPU can't keep up with the 3 s window: watch `Processing audio queue: N remaining` in the terminal — if N keeps climbing, change `-np 2` to `-np 1` in start-llama, or switch to a smaller model |
+| Port conflicts | 3001 (backend) / 8080 (llama) / 5173 (frontend) — adjust the corresponding config when occupied |
 
 <div align="center">
 <img src="docs/divider.png" alt="✦" width="60%"/>
 </div>
 
-<h2 align="center">✦ 已知限制 ✦</h2>
+<h2 align="center">✦ Known Limitations ✦</h2>
 
-- 识别语言仅支持**中文、英文**（其他语言按幻觉过滤丢弃）
-- Windows 纯 CPU + 1.7B 模型下，译文总延迟约 **3–5 秒**（原文渐进入幕 ~2 秒先出）；有 N 卡装 CUDA 版 llama.cpp 可降到 ~2 秒
-- 1.7B 翻译质量略低于 4B：短句基本无差别，长难句偶有不顺、偶发繁体中文（方向守卫会兜底重试）。追求质量可在 Windows 上也改用 4B（换下载脚本里一行模型名，内存需 16 GB）
-- 浏览器要求桌面版 **Chrome / Edge**（ScriptProcessorNode + WebSocket）
+- Recognition supports **Chinese and English only** (other languages are filtered out as hallucinations)
+- On pure-CPU Windows with the 1.7B model, total subtitle latency is about **3–5 s** (the original text appears first via progressive display in ~2 s); an NVIDIA GPU with the CUDA build of llama.cpp brings it down to ~2 s
+- The 1.7B model's translation quality is slightly below the 4B's: short sentences are essentially identical, but long, difficult sentences occasionally come out awkwardly or in Traditional Chinese (the direction guard retries as a fallback). For best quality, switch to the 4B model on Windows too (one line in the download script; needs 16 GB RAM)
+- Requires a desktop **Chrome / Edge** browser (ScriptProcessorNode + WebSocket)
 
 <div align="center">
 <img src="docs/divider.png" alt="✦" width="60%"/>
@@ -250,8 +253,8 @@ npm run dev
 
 <div align="center">
 
-### ✦ 用爱，为你而做 ✦
+### ✦ Made with love, for the Star ✦
 
-`© sunnnnnshineeee · Live Translator`
+`© sunnnnnshineeee · Live Translator for the Star`
 
 </div>
