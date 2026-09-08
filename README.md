@@ -1,23 +1,23 @@
 <div align="center">
 
-# 🎙️ Live Translator
+<img src="docs/banner.jpg" alt="Live Translator" width="100%"/>
 
-### 实时双语直播字幕 · 全程本地运行
+### ✦ 实时双语直播字幕 · 全程本地运行 ✦
 
 麦克风 → **Whisper.cpp** 语音识别 → **Qwen3** 本地翻译 → 浏览器字幕层（可直接作为 OBS 浏览器源）
 
 **不依赖任何云服务 · 不需要 API Key · 数据不出本机**
 
-![Platform](https://img.shields.io/badge/平台-macOS%20%7C%20Windows-blue)
-![Node](https://img.shields.io/badge/Node.js-%3E%3D%2020-green)
-![Local](https://img.shields.io/badge/100%25-本地运行-ff69b4)
-![License](https://img.shields.io/badge/无-云服务%20%2F%20API%20Key-success)
+![Platform](https://img.shields.io/badge/平台-macOS%20%7C%20Windows-9E1C1C)
+![Node](https://img.shields.io/badge/Node.js-%3E%3D%2020-C9A227)
+![Local](https://img.shields.io/badge/100%25-本地运行-1F3A5F)
+![Cloud](https://img.shields.io/badge/无-云服务%20%2F%20API%20Key-B5651D)
 
 </div>
 
 ---
 
-> ### 👋 写给朋友的话
+> ### 🎭 写给朋友的话
 >
 > 朋友你好呀！这个小东西是我连着好几个晚上一点点抠出来的——从语音幻听到翻译复读，每个功能都是踩坑踩出来的。
 > 安装哪一步卡住了别慌，随时来找我。祝你直播顺利！🎉
@@ -26,10 +26,10 @@
 
 ---
 
-## ✨ 特性亮点
+## ✦ ⚡ 特性亮点
 
 | | 特性 | 说明 |
-|---|---|---|
+|:---:|---|---|
 | ⚡ | **渐进入幕** | 原文 ~1.8 秒先上屏，译文完成后自动替换为双语 |
 | 🛡️ | **反幻听三件套** | VAD + RMS 静音门限 + 第三语言过滤，无声时不再"凭空说话" |
 | 🔁 | **自动双向** | 中文 ⇄ 英文自动检测方向，也可手动锁定 |
@@ -38,7 +38,7 @@
 
 ---
 
-## 🧠 工作原理
+## ✦ 🧠 工作原理
 
 ```mermaid
 flowchart LR
@@ -51,7 +51,7 @@ flowchart LR
 
 ---
 
-## 📋 环境要求
+## ✦ 📋 环境要求
 
 ### 🖥️ 硬件
 
@@ -82,7 +82,7 @@ flowchart LR
 
 ---
 
-## 🚀 快速开始
+## ✦ 🚀 快速开始
 
 以下命令均在项目根目录执行。
 
@@ -143,7 +143,7 @@ cd ..
 
 ---
 
-## ▶️ 运行（需要开 3 个终端）
+## ✦ ▶️ 运行（需要开 3 个终端）
 
 ```bash
 # 终端 1️⃣  翻译模型服务（端口 8080）
@@ -166,7 +166,7 @@ npm run dev
 
 ---
 
-## 🎬 接入 OBS
+## ✦ 🎬 接入 OBS
 
 1. OBS → 添加 **浏览器源**
 2. URL 填 `http://localhost:5173/overlay`，宽 **1200** 高 **300**
@@ -176,7 +176,7 @@ npm run dev
 
 ---
 
-## 📁 项目结构
+## ✦ 📁 项目结构
 
 <details>
 <summary>点击展开</summary>
@@ -201,7 +201,7 @@ npm run dev
 
 ---
 
-## 🔧 故障排查
+## ✦ 🔧 故障排查
 
 | 症状 | 原因 / 解决 |
 |---|---|
@@ -214,7 +214,7 @@ npm run dev
 
 ---
 
-## ⚠️ 已知限制
+## ✦ ⚠️ 已知限制
 
 - 识别语言仅支持**中文、英文**（其他语言按幻觉过滤丢弃）
 - Windows 纯 CPU + 1.7B 模型下，译文总延迟约 **3–5 秒**（原文渐进入幕 ~2 秒先出）；有 N 卡装 CUDA 版 llama.cpp 可降到 ~2 秒
@@ -225,6 +225,8 @@ npm run dev
 
 <div align="center">
 
-**Made with ❤️ & 踩不完的坑**
+**✦ 用 ❤️ 与踩不完的坑，为你而做 ✦**
+
+`© sunnnnnshineeee · Live Translator`
 
 </div>
