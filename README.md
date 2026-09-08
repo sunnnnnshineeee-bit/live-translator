@@ -19,7 +19,7 @@ Microphone → **Whisper.cpp** speech recognition → **Qwen3** local translatio
 
 > ### A Note for My Friend
 >
-> I originally thought I could finish this in a week! It ended up taking a whole month of on-and-off tinkering. I hope this little translator proves helpful to the Star (o^^o)
+> 本来想着一周就能做完的！最后没想到断断续续搓了一个月，希望这个小翻译器能对星星有所帮助(o^^o)
 >
 > —— 烧鸭
 
