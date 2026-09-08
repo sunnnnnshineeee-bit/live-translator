@@ -100,6 +100,8 @@ All commands below run in the project root.
 
 ### 1. Clone the repo and install dependencies
 
+Run in Terminal (macOS) or PowerShell (Windows) — same commands on both platforms:
+
 ```bash
 git clone https://github.com/sunnnnnshineeee-bit/live-translator.git
 cd live-translator
@@ -126,12 +128,23 @@ After downloading you will have these files:
 
 ### 3. Build whisper.cpp
 
+**macOS / Linux (Terminal):**
+
 ```bash
 git clone https://github.com/ggml-org/whisper.cpp
 cd whisper.cpp
 cmake -B build
-cmake --build build -j              # macOS / Linux
-# cmake --build build --config Release   <- Windows: use this instead
+cmake --build build -j
+cd ..
+```
+
+**Windows (PowerShell):**
+
+```powershell
+git clone https://github.com/ggml-org/whisper.cpp
+cd whisper.cpp
+cmake -B build
+cmake --build build --config Release
 cd ..
 ```
 
@@ -160,16 +173,25 @@ Run `brew install llama.cpp`, or build it yourself — just make sure `llama/lla
 
 <h2 align="center">✦ Running (3 terminals) ✦</h2>
 
+**Terminal 1 — translation model server (port 8080):**
+
 ```bash
-# Terminal 1: translation model server (port 8080)
-bash scripts/start-llama.sh                        # macOS / Linux
-# Windows:
-# powershell -ExecutionPolicy Bypass -File scripts\start-llama.ps1
+bash scripts/start-llama.sh                          # macOS / Linux
+```
 
-# Terminal 2: subtitle backend (port 3001)
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\start-llama.ps1    # Windows
+```
+
+**Terminal 2 — subtitle backend (port 3001):** (same on both platforms)
+
+```bash
 npx tsx server.ts
+```
 
-# Terminal 3: frontend
+**Terminal 3 — frontend:** (same on both platforms)
+
+```bash
 npm run dev
 ```
 
