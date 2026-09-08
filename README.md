@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="docs/banner.jpg" alt="Live Translator" width="100%"/>
-
 ### ✦ Live Translator for the Star ✦
 
 Microphone → **Whisper.cpp** speech recognition → **Qwen3** local translation → browser subtitle overlay (works directly as an OBS browser source)
@@ -246,15 +244,3 @@ Open <http://localhost:5173>:
 - On pure-CPU Windows with the 1.7B model, total subtitle latency is about **3–5 s** (the original text appears first via progressive display in ~2 s); an NVIDIA GPU with the CUDA build of llama.cpp brings it down to ~2 s
 - The 1.7B model's translation quality is slightly below the 4B's: short sentences are essentially identical, but long, difficult sentences occasionally come out awkwardly or in Traditional Chinese (the direction guard retries as a fallback). For best quality, switch to the 4B model on Windows too (one line in the download script; needs 16 GB RAM)
 - Requires a desktop **Chrome / Edge** browser (ScriptProcessorNode + WebSocket)
-
-<div align="center">
-<img src="docs/divider.png" alt="✦" width="60%"/>
-</div>
-
-<div align="center">
-
-### ✦ Made with love, for the Star ✦
-
-`© sunnnnnshineeee · Live Translator for the Star`
-
-</div>
