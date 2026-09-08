@@ -16,7 +16,7 @@
 </div>
 
 <div align="center">
-<img src="docs/divider.jpg" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="80%"/>
 </div>
 
 > ### 🎭 写给朋友的话
@@ -27,7 +27,7 @@
 > —— sunnnnnshineeee
 
 <div align="center">
-<img src="docs/divider.jpg" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="80%"/>
 </div>
 
 <h2 align="center">✦ ⚡ 特性亮点 ✦</h2>
@@ -41,7 +41,7 @@
 | 🚫 | **复读克星** | 方向守卫检测到"原样复读"自动强制重译 |
 
 <div align="center">
-<img src="docs/divider.jpg" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="80%"/>
 </div>
 
 <h2 align="center">✦ 🧠 工作原理 ✦</h2>
@@ -66,7 +66,7 @@ flowchart LR
 ```
 
 <div align="center">
-<img src="docs/divider.jpg" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="80%"/>
 </div>
 
 <h2 align="center">✦ 📋 环境要求 ✦</h2>
@@ -99,7 +99,7 @@ flowchart LR
 </details>
 
 <div align="center">
-<img src="docs/divider.jpg" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="80%"/>
 </div>
 
 <h2 align="center">✦ 🚀 快速开始 ✦</h2>
@@ -162,7 +162,7 @@ cd ..
 </details>
 
 <div align="center">
-<img src="docs/divider.jpg" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="80%"/>
 </div>
 
 <h2 align="center">✦ ▶️ 运行（需要开 3 个终端） ✦</h2>
@@ -187,7 +187,7 @@ npm run dev
 3. ▶️ 点 **Start Translation**，开始说话！
 
 <div align="center">
-<img src="docs/divider.jpg" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="80%"/>
 </div>
 
 <h2 align="center">✦ 🎬 接入 OBS ✦</h2>
@@ -199,7 +199,7 @@ npm run dev
 > ⚠️ 直播结束记得点 **Stop Translation**——会触发 flush，把最后半句提交翻译完再退出。
 
 <div align="center">
-<img src="docs/divider.jpg" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="80%"/>
 </div>
 
 <h2 align="center">✦ 📁 项目结构 ✦</h2>
@@ -226,7 +226,7 @@ npm run dev
 </details>
 
 <div align="center">
-<img src="docs/divider.jpg" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="80%"/>
 </div>
 
 <h2 align="center">✦ 🔧 故障排查 ✦</h2>
@@ -241,7 +241,7 @@ npm run dev
 | 🔌 端口冲突 | 3001（后端）/ 8080（llama）/ 5173（前端）被占用时改对应配置 |
 
 <div align="center">
-<img src="docs/divider.jpg" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="80%"/>
 </div>
 
 <h2 align="center">✦ ⚠️ 已知限制 ✦</h2>
@@ -252,7 +252,7 @@ npm run dev
 - 浏览器要求桌面版 **Chrome / Edge**（ScriptProcessorNode + WebSocket）
 
 <div align="center">
-<img src="docs/divider.jpg" alt="✦" width="80%"/>
+<img src="docs/divider.png" alt="✦" width="80%"/>
 </div>
 
 <div align="center">
